@@ -16,7 +16,7 @@ RUN go mod download
 COPY ./credentials.json /credentials.json
 COPY . .
 
-RUN wget "https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.11.0" -o -o /usr/local/bin/cloud_sql_proxy
+RUN wget "https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.11.0" -o /usr/local/bin/cloud_sql_proxy
 RUN chmod+x /usr/local/bin/cloud_sql_proxy
 
 # Build the Go application
