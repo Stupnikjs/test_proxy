@@ -14,7 +14,7 @@ COPY ./credentials.json /credentials.json
 COPY . .
 
 # Download Cloud SQL Proxy specific to Alpine Linux
-RUN wget "https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/cloud-sql-proxy-v2.11.0-alpine" -O /usr/local/bin/cloud_sql_proxy && \
+RUN wget "https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/cloud-sql-proxy-v2.11.0-alpine/cloud-sql-proxy.linux.amd64" -O /usr/local/bin/cloud_sql_proxy && \
     chmod +x /usr/local/bin/cloud_sql_proxy
 
 # Build the Go application
