@@ -8,7 +8,9 @@ import (
 	_ "github.com/lib/pq"
 )
 
-var uri = ""
+var uri = "postgres://postgres:superstronkpassword@localhost:3306/postgres"
+
+// "postgres://postgres:skapunk@34.163.64.88:5432/postgres"
 
 func main() {
 
@@ -22,6 +24,7 @@ func main() {
 	if err != nil {
 		fmt.Print(err)
 	}
+
 	log.Println("Connected to Postgres!")
 
 }
