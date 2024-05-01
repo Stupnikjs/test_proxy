@@ -18,7 +18,7 @@ COPY . .
  
 
 # Build the Go application
-RUN go build -o main ./cmd
+RUN go build -o main .
 # Specify the command to run when the container starts
 
 EXPOSE $PORT 
@@ -26,4 +26,4 @@ EXPOSE $PORT
 
 RUN go install github.com/GoogleCloudPlatform/cloud-sql-proxy/v2@latest
 
-CMD [ "cloud_sql_proxy", "-instances=${INSTANCE}" , "-credential_file=/credentials.json", "&", "./main" ]
+CMD [ "cloud_sql_proxy", "-instances=${INSTANCE}" , "-credential_file=/credentials.json", "&", "./" ]
