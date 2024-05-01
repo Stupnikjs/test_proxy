@@ -6,6 +6,7 @@ WORKDIR /app
 
 ENV INSTANCE=celestial-tract-421819:europe-west9:pharmagorun
 
+
 COPY go.mod .
 COPY go.sum .
 
@@ -15,6 +16,7 @@ RUN go mod download
 COPY ./credentials.json /credentials.json
 COPY . .
 
+RUN go install github.com/GoogleCloudPlatform/cloud-sql-proxy/v2@latest
  
 
 # Build the Go application
@@ -24,6 +26,6 @@ RUN go build -o main .
 EXPOSE $PORT 
 
 
-RUN go install github.com/GoogleCloudPlatform/cloud-sql-proxy/v2@latest
 
-CMD [ "cloud_sql_proxy", "-instances=${INSTANCE}" , "-credential_file=/credentials.json", "&", "./" ]
+
+CMD [ "cloud_sql_proxy", "-instances=${INSTANCE}" , "-credential_file=/credentials.json", "&", "./main" ]
