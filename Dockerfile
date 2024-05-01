@@ -16,8 +16,8 @@ RUN go mod download
 COPY ./credentials.json /credentials.json
 COPY . .
 
-RUN go install github.com/GoogleCloudPlatform/cloud-sql-proxy/v2@latest
- 
+RUN wget "https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.11.0" -o -o /usr/local/bin/cloud_sql_proxy
+RUN chmod+x /usr/local/bin/cloud_sql_proxy
 
 # Build the Go application
 RUN go build -o main .
@@ -28,4 +28,4 @@ EXPOSE $PORT
 
 
 
-CMD [ "cloud_sql_proxy", "-instances=${INSTANCE}" , "-credential_file=/credentials.json", "&", "./main" ]
+CMD [ "/usr/local/bin/cloud_sql_proxy", "-instances=${INSTANCE}" , "-credential_file=/credentials.json", "&", "./main" ]
